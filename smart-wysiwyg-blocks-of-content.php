@@ -4,7 +4,7 @@ Plugin Name: Smart WYSIWYG Blocks Of Content
 Plugin URI: http://cnjcbs.com/wordpress-plugins/smart-wysiwyg-blocks-of-content
 Description:
 Author: Coen Jacobs
-Version: 0.2
+Version: 0.2.1
 Author URI: http://cnjcbs.com
 */
 
