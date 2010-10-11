@@ -4,7 +4,7 @@ Donate link: http://cnjcbs.com/donate
 Tags: wysiwyg, widgets
 Requires at least: 2.9
 Tested up to: 3.0
-Stable tag: 0.2
+Stable tag: 0.2.1
 
 Adds a custom post type that can be easily inserted at multiple spots, including widgets. Easy way to create WYSIWYG widgets.
 
@@ -31,6 +31,9 @@ That's not yet possible, please wait for later releases.
 1. Adding Smart Blocks via the menu item
 
 == Changelog ==
+
+= 0.2.1 =
+* Few minor bug fixes
 
 = 0.2 =
 * Added combobox to the widget for easy selection of the wanted Smart Block
