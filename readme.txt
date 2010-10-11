@@ -28,12 +28,12 @@ That's not yet possible, please wait for later releases.
 == Screenshots ==
 
 1. Example of a filled widget form
-2. Adding Smart Blocks via the menu item
+1. Adding Smart Blocks via the menu item
 
 == Changelog ==
 
 = 0.2 =
-*Added combobox to the widget for easy selection of the wanted Smart Block
+* Added combobox to the widget for easy selection of the wanted Smart Block
 
 = 0.1 =
 * Initial release
