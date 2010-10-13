@@ -4,7 +4,7 @@ Donate link: http://cnjcbs.com/donate
 Tags: wysiwyg, widgets
 Requires at least: 2.9
 Tested up to: 3.0
-Stable tag: 0.2.1
+Stable tag: 0.3
 
 Adds a custom post type that can be easily inserted at multiple spots, including widgets. Easy way to create WYSIWYG widgets.
 
@@ -18,12 +18,9 @@ Adds a custom post type that can be easily inserted at multiple spots, including
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. Add a Smart Block, using the added menu item `Smart Blocks`
 1. Add a widget to a sidebar and select the options and a specific Smart Block to show
+1. Add the shortcode `[smartblock id=<SWBOC_ID>]` in a post or page to show the Smart Block there
 
 == Frequently Asked Questions ==
-
-= How do I add a Smart WYSIWYG Block Of Content to a page/post? =
-
-That's not yet possible, please wait for later releases.
 
 == Screenshots ==
 
@@ -31,6 +28,9 @@ That's not yet possible, please wait for later releases.
 1. Adding Smart Blocks via the menu item
 
 == Changelog ==
+
+= 0.3 =
+* Added shortcode for easy insertion in posts and pages
 
 = 0.2.1 =
 * Few minor bug fixes
