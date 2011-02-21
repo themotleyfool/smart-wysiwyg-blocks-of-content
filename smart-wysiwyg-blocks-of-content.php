@@ -4,7 +4,7 @@ Plugin Name: Smart WYSIWYG Blocks Of Content
 Plugin URI: http://cnjcbs.com/wordpress-plugins/smart-wysiwyg-blocks-of-content
 Description:
 Author: Coen Jacobs
-Version: 0.3
+Version: 0.4
 Author URI: http://cnjcbs.com
 */
 
@@ -80,7 +80,7 @@ class SWBOC_Widget extends WP_Widget {
 		<label for="<?php echo $this->get_field_id('swboc_id'); ?>">Smart block:
 		<select class="widefat" id="<?php echo $this->get_field_id('swboc_id'); ?>" name="<?php echo $this->get_field_name('swboc_id'); ?>">
 		
-			<?php query_posts('post_type=Smart Block&orderby=ID&order=ASC'); ?>
+			<?php query_posts('post_type=Smart Block&posts_per_page=-1&orderby=ID&order=ASC'); ?>
 			
 			<?php if ( have_posts() ) : while ( have_posts() ) : the_post();
 				$currentID = get_the_ID();
@@ -123,10 +123,10 @@ function create_swboc_type() {
 				'not_found_in_trash' => __( 'No Smart Blocks found in Trash' ),
 				'parent' => __( 'Parent Smart Block' ),
 			),
-			'public' => true,
+			'public' => false,
 			'description' => __( 'A Smart Block is a effective way to store content that you will use more than once.'),
 			'show_ui' => true,
-			'publicly_queryable' => true,
+			'publicly_queryable' => false,
 			'exclude_from_search' => true,
 			'menu_position' => 20,
 			'hierarchical' => false,
