@@ -4,7 +4,7 @@ Plugin Name: Smart WYSIWYG Blocks Of Content
 Plugin URI: http://cnjcbs.com/wordpress-plugins/smart-wysiwyg-blocks-of-content
 Description:
 Author: Coen Jacobs
-Version: 0.4
+Version: 0.4.1
 Author URI: http://cnjcbs.com
 */
 
@@ -19,7 +19,7 @@ function swboc_shortcode($atts) {
 	{
 		$args = array(
 			'post__in' => array($id),
-			'post_type' => 'Smart Block',
+			'post_type' => 'smartblock',
 		);
 		
 		query_posts($args);
@@ -31,6 +31,7 @@ function swboc_shortcode($atts) {
 		wp_reset_query();
 	}
 }
+
 add_shortcode('smartblock', 'swboc_shortcode');
 
 class SWBOC_Widget extends WP_Widget {
@@ -50,7 +51,7 @@ class SWBOC_Widget extends WP_Widget {
 		
 		$args = array(
 			'post__in' => array($swboc_id),
-			'post_type' => 'Smart Block',
+			'post_type' => 'smartblock',
 		);
 		
 		query_posts($args);
@@ -103,10 +104,8 @@ class SWBOC_Widget extends WP_Widget {
 
 add_action( 'widgets_init', create_function( '', "register_widget('SWBOC_Widget');" ) );
 
-add_action( 'init', 'create_swboc_type' );
-
 function create_swboc_type() {
-	register_post_type( 'Smart Block',
+	register_post_type( 'smartblock',
 		array(
 			'labels' => array(
 				'name' => __( 'Smart Blocks' ),
@@ -117,7 +116,7 @@ function create_swboc_type() {
 				'edit_item' => __( 'Edit Smart Block' ),
 				'new_item' => __( 'New Smart Block' ),
 				'view' => __( 'View Smart Block' ),
-				'view_item' => __( 'View SSmart Block' ),
+				'view_item' => __( 'View Smart Block' ),
 				'search_items' => __( 'Search Smart Blocks' ),
 				'not_found' => __( 'No Smart Blocks found' ),
 				'not_found_in_trash' => __( 'No Smart Blocks found in Trash' ),
@@ -136,5 +135,21 @@ function create_swboc_type() {
 		)
 	);
 }
+
+add_action( 'init', 'create_swboc_type' );
+
+function update_swboc_database()
+{
+	$db_version = get_option('swboc_database_version');
+	
+	if($db_version != '' || $db_version < 2)
+	{
+		global $wpdb;
+		$wpdb->update( $wpdb->posts, array( 'post_type' => 'smartblock' ), array( 'post_type' => 'Smart Block' ) );
+		update_option('swboc_database_version', 2);
+	}
+}
+
+add_action('admin_init', 'update_swboc_database');
 
 ?>

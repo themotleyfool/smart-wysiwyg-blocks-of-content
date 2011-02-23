@@ -4,7 +4,7 @@ Donate link: http://cnjcbs.com/donate
 Tags: wysiwyg, widgets
 Requires at least: 3.0
 Tested up to: 3.1
-Stable tag: 0.4
+Stable tag: 0.4.1
 
 Adds a custom post type that can be easily inserted at multiple spots, including widgets. Easy way to create WYSIWYG widgets.
 
@@ -28,6 +28,9 @@ Adds a custom post type that can be easily inserted at multiple spots, including
 1. Adding Smart Blocks via the menu item
 
 == Changelog ==
+
+= 0.4.1 =
+* Fixed the bug that was introduced while using it since WordPress 3.1 (Thanks Nacin for the help!)
 
 = 0.4 =
 * Several little bug fixes
