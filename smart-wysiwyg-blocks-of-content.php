@@ -57,7 +57,7 @@ class SWBOC_Widget extends WP_Widget {
 		$swboc_posts = get_posts($args);
 		
 		foreach( $swboc_posts as $post ) :
-			echo $post->post_content;
+			echo apply_filters('the_content', $post->post_content);
 		endforeach;
 
 		echo $after_widget;
