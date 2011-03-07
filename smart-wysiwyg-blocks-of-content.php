@@ -2,9 +2,9 @@
 /*
 Plugin Name: Smart WYSIWYG Blocks Of Content
 Plugin URI: http://cnjcbs.com/wordpress-plugins/smart-wysiwyg-blocks-of-content
-Description:
+Description: Adds a custom post type that can be easily inserted at multiple spots, including widgets. Easy way to create WYSIWYG widgets.
 Author: Coen Jacobs
-Version: 0.4.3
+Version: 0.5
 Author URI: http://cnjcbs.com
 */
 
@@ -22,13 +22,11 @@ function swboc_shortcode($atts) {
 			'post_type' => 'smartblock',
 		);
 		
-		query_posts($args);
+		$swboc_posts = get_posts($args);
 		
-		while ( have_posts() ) : the_post();
-			$content .= apply_filters('the_content', get_the_content());
-		endwhile;
-		
-		wp_reset_query();
+		foreach( $swboc_posts as $post ) :
+			$content .= apply_filters('the_content', $post->post_content);
+		endforeach;
 	}
 	
 	return $content;
@@ -56,13 +54,11 @@ class SWBOC_Widget extends WP_Widget {
 			'post_type' => 'smartblock',
 		);
 		
-		query_posts($args);
+		$swboc_posts = get_posts($args);
 		
-		while ( have_posts() ) : the_post();
-			the_content();
-		endwhile;
-		
-		wp_reset_query();
+		foreach( $swboc_posts as $post ) :
+			echo $post->post_content;
+		endforeach;
 
 		echo $after_widget;
 	}
@@ -83,24 +79,22 @@ class SWBOC_Widget extends WP_Widget {
 		<label for="<?php echo $this->get_field_id('swboc_id'); ?>">Smart block:
 		<select class="widefat" id="<?php echo $this->get_field_id('swboc_id'); ?>" name="<?php echo $this->get_field_name('swboc_id'); ?>">
 		
-			<?php query_posts('post_type=smartblock&posts_per_page=-1&orderby=ID&order=ASC'); ?>
+			<?php $args = 'post_type=smartblock&posts_per_page=-1&orderby=ID&order=ASC';
 			
-			<?php if ( have_posts() ) : while ( have_posts() ) : the_post();
-				$currentID = get_the_ID();
+			$swboc_posts = get_posts($args);
+			
+			foreach( $swboc_posts as $post ) :
+    			$currentID = $post->ID;
+				
 				if($currentID == $swboc_id)
 					$extra = 'SELECTED';
 				else
 					$extra = '';
 				
-				echo '<option value="'.$currentID.'" '.$extra.'>'.get_the_title().'</option>';
-			endwhile; else:
-				echo '<option value="NULL">Create blocks first</option>';
-			endif; ?>
+				echo '<option value="'.$currentID.'" '.$extra.'>'.$post->post_title.'</option>';
+			endforeach; 
 			
-			<?php wp_reset_query(); ?>
-		</select></label>
-
-		<?php
+		?></select></label><?php
 	}
 }
 
