@@ -13,7 +13,8 @@ class SWBOC_Widget extends WP_Widget {
 		$swboc_id    = esc_attr( $instance[ 'swboc_id' ] );
 		$swboc_title = esc_attr( $instance[ 'title' ] );
 		
-		echo $before_title . $swboc_title . $after_title;
+		if ( ! empty( $swboc_title ) )
+			echo $before_title . $swboc_title . $after_title;
 		
 		$args = array (
 			'post__in'  => array ( $swboc_id ),
@@ -21,10 +22,14 @@ class SWBOC_Widget extends WP_Widget {
 		);
 		
 		$swboc_posts = get_posts( $args );
+
+		remove_filter( 'the_content', 'prepend_attachment' );
 		
 		foreach ( $swboc_posts as $post ) {
 			echo apply_filters( 'the_content', $post->post_content );
 		}
+
+		add_filter( 'the_content', 'prepend_attachment' );
 
 		echo $after_widget;
 	}
