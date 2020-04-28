@@ -1,0 +1,5 @@
+{
+    "name": "fool/smart-wysiwyg-blocks-of-content",
+    "description": "Adds a custom post type that can be easily inserted at multiple spots, including widgets. Easy way to create WYSIWYG widgets.",
+    "type": "wordpress-plugin"
+}
