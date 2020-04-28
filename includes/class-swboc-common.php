@@ -5,7 +5,7 @@ class SWBOC_Common {
 		add_action( 'init', array ( $this, 'create_swboc_type' ) );
 		
 		include( 'class-swboc-widget.php' );
-		add_action( 'widgets_init', create_function( '', "register_widget( 'SWBOC_Widget' );" ) );
+		add_action( 'widgets_init', function () { register_widget( 'SWBOC_Widget' ); } );
 	}
 	
 	function create_swboc_type() {
